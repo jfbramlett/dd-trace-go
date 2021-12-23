@@ -351,6 +351,8 @@ func (t *tracer) StartSpanFromContext(ctx gocontext.Context, operationName strin
 				// on the details of the ContextWithSpan() wrapping below.
 				pprofCtx = parentContext.span.pprofCtxActive
 			}
+		} else {
+			context = &spanContext{spanID: opts.Parent.SpanID(), traceID: opts.Parent.TraceID()}
 		}
 	}
 	id := opts.SpanID
